@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <application>
+        <!-- Incoming call activity -->
+        <activity
+            android:name=".IncomingCallActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:showOnLockScreen="true"
+            android:showWhenLocked="true"
+            android:turnScreenOn="true"
+            android:theme="@style/RiviumPushVoipCallTheme" />
+
+        <!-- Trampoline activity for Android 12+ -->
+        <activity
+            android:name=".CallTrampolineActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:noHistory="true"
+            android:theme="@style/RiviumPushVoipTransparentTheme" />
+
+        <!-- Decline activity for Android 12+ -->
+        <activity
+            android:name=".DeclineCallActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:noHistory="true"
+            android:theme="@style/RiviumPushVoipTransparentTheme" />
+
+        <!-- Broadcast receiver for call actions -->
+        <receiver
+            android:name=".CallActionReceiver"
+            android:exported="false" />
+
+        <!-- Manifest-registered receiver for Rivium Push messages -->
+        <!-- This works even when app is in background (Flutter not running) -->
+        <receiver
+            android:name=".RiviumPushMessageReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="co.rivium.push.MESSAGE" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>
