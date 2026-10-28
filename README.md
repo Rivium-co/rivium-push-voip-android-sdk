@@ -25,7 +25,7 @@ Native incoming call UI for Android with full-screen call notifications. Add rea
 
 ```kotlin
 dependencies {
-    implementation("co.rivium:rivium-push-android:0.1.1")  // Push SDK
+    implementation("co.rivium:rivium-push-android:0.1.19") // Push SDK
     implementation("co.rivium:rivium-push-voip:0.1.1")     // VoIP SDK
 }
 ```
