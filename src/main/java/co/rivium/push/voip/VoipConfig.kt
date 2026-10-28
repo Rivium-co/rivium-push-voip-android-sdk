@@ -27,7 +27,10 @@ data class VoipConfig(
     val callerAvatarKey: String = "callerAvatar",
 
     /** Key for call type (audio/video) in push payload */
-    val callTypeKey: String = "callType"
+    val callTypeKey: String = "callType",
+
+    /** Key for the call ID in push payload ("callId" and "uuid" are tried after it) */
+    val callIdKey: String = "callId"
 ) {
     companion object {
         /**
@@ -42,7 +45,8 @@ data class VoipConfig(
                 callerNameKey = map["callerNameKey"] as? String ?: "callerName",
                 callerIdKey = map["callerIdKey"] as? String ?: "callerId",
                 callerAvatarKey = map["callerAvatarKey"] as? String ?: "callerAvatar",
-                callTypeKey = map["callTypeKey"] as? String ?: "callType"
+                callTypeKey = map["callTypeKey"] as? String ?: "callType",
+                callIdKey = map["callIdKey"] as? String ?: "callId"
             )
         }
     }
@@ -55,6 +59,7 @@ data class VoipConfig(
         "callerNameKey" to callerNameKey,
         "callerIdKey" to callerIdKey,
         "callerAvatarKey" to callerAvatarKey,
-        "callTypeKey" to callTypeKey
+        "callTypeKey" to callTypeKey,
+        "callIdKey" to callIdKey
     )
 }

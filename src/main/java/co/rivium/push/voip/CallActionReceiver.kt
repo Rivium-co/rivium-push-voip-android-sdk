@@ -28,7 +28,6 @@ class CallActionReceiver : BroadcastReceiver() {
         val callData = callDataJson?.let { CallData.fromJson(it) }
 
         Log.d(TAG, "Action received: ${intent.action}")
-        Log.d(TAG, "Call data: $callData")
 
         if (callData == null) {
             Log.e(TAG, "Call data is null")

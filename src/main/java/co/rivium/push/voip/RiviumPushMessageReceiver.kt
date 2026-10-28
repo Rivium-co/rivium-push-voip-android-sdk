@@ -36,7 +36,6 @@ class RiviumPushMessageReceiver : BroadcastReceiver() {
             return
         }
 
-        Log.d(TAG, "Payload: $payload")
 
         try {
             // Parse JSON payload

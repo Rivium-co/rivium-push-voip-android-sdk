@@ -24,7 +24,7 @@ class DeclineCallActivity : Activity() {
         val callDataJson = intent.getStringExtra(CallActionReceiver.EXTRA_CALL_DATA)
         val notificationId = intent.getIntExtra(CallActionReceiver.EXTRA_NOTIFICATION_ID, -1)
 
-        Log.d(TAG, "Declining call, callData: $callDataJson, notificationId: $notificationId")
+        Log.d(TAG, "Declining call, notificationId: $notificationId")
 
         // Cancel the notification
         if (notificationId != -1) {

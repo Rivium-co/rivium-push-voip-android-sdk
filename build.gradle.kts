@@ -5,7 +5,7 @@ plugins {
 }
 
 // SDK Version
-val sdkVersion = "0.1.0"
+val sdkVersion = "0.1.1"
 
 android {
     namespace = "co.rivium.push.voip"

@@ -56,7 +56,7 @@ class IncomingCallActivity : AppCompatActivity() {
             return
         }
 
-        Log.d(TAG, "Showing incoming call UI for: ${callData?.callerName}, callType: ${callData?.callType}, isVideoCall: ${callData?.isVideoCall}")
+        Log.d(TAG, "Showing incoming call UI for: ${callData?.callId}, callType: ${callData?.callType}, isVideoCall: ${callData?.isVideoCall}")
         setupUI()
     }
 

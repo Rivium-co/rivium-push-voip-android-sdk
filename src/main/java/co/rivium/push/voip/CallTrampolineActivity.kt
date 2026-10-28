@@ -25,7 +25,7 @@ class CallTrampolineActivity : Activity() {
         val callDataJson = intent.getStringExtra("rivium_push_voip_call_data")
         val notificationId = intent.getIntExtra(CallActionReceiver.EXTRA_NOTIFICATION_ID, -1)
 
-        Log.d(TAG, "Call accepted: $callAccepted, callData: $callDataJson, notificationId: $notificationId")
+        Log.d(TAG, "Call accepted: $callAccepted, notificationId: $notificationId")
 
         // Cancel the notification
         if (notificationId != -1) {

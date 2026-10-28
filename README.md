@@ -26,7 +26,7 @@ Native incoming call UI for Android with full-screen call notifications. Add rea
 ```kotlin
 dependencies {
     implementation("co.rivium:rivium-push-android:0.1.1")  // Push SDK
-    implementation("co.rivium:rivium-push-voip:0.1.0")     // VoIP SDK
+    implementation("co.rivium:rivium-push-voip:0.1.1")     // VoIP SDK
 }
 ```
 
@@ -127,9 +127,12 @@ val config = VoipConfig(
     callerNameKey = "callerName",   // Push payload key for caller name
     callerIdKey = "callerId",       // Push payload key for caller ID
     callerAvatarKey = "callerAvatar", // Push payload key for avatar URL
-    callTypeKey = "callType"        // Push payload key for call type
+    callTypeKey = "callType",       // Push payload key for call type
+    callIdKey = "callId"            // Push payload key for the call ID
 )
 ```
+
+The call ID is read from `callIdKey`, then `callId`, then `uuid`; with none of them a random ID is used. If your server sends the call ID in another field, set `callIdKey` to that field's name. Every field of the push stays available to your app in `CallData.payload`.
 
 ## Native Call Handler (Cold Start)
 

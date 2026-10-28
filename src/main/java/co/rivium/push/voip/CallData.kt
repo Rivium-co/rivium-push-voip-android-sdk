@@ -67,8 +67,6 @@ data class CallData(
             // Extract data from nested "data" object if present, otherwise use top-level
             // Handle various Map types (LinkedTreeMap from Gson, HashMap, etc.)
             val nested = payload["data"]
-            android.util.Log.d("CallData", "fromPushPayload - nested data type: ${nested?.javaClass?.name}, value: $nested")
-
             val dataMap: Map<String, Any?> = when (nested) {
                 is Map<*, *> -> nested.mapKeys { it.key?.toString() ?: "" }
                     .mapValues { it.value }
@@ -76,24 +74,18 @@ data class CallData(
                 else -> emptyMap()
             }
 
-            android.util.Log.d("CallData", "fromPushPayload - dataMap: $dataMap")
-            android.util.Log.d("CallData", "fromPushPayload - consultationId in dataMap: ${dataMap["consultationId"]}")
-
             // Use nested data if available, fallback to top-level payload
             val effectiveDataMap = dataMap.ifEmpty { payload }
 
             // Also check top-level for backwards compatibility
             fun getValue(key: String): Any? = effectiveDataMap[key] ?: payload[key]
 
-            val resolvedCallId = getValue("consultationId") as? String
+            // Call ID: the configured key, then "callId", then "uuid"
+            val resolvedCallId = getValue(safeConfig.callIdKey) as? String
                 ?: getValue("callId") as? String
                 ?: getValue("uuid") as? String
                 ?: java.util.UUID.randomUUID().toString()
 
-            android.util.Log.d("CallData", "fromPushPayload - resolved callId: $resolvedCallId")
-
-            // Priority for callId: consultationId > callId > uuid > random
-            // Most apps use consultationId as the actual call identifier
             return CallData(
                 callId = resolvedCallId,
                 callerName = getValue(safeConfig.callerNameKey) as? String ?: "Unknown Caller",
